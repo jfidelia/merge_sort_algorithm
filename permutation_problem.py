@@ -1,40 +1,45 @@
 # O(N)
 import unittest
+from collections import Counter
 
 
-def unique(string):
-    # Assuming character set is ASCII (128 characters)
-    if len(string) > 128:
+def check_permutation(str1, str2):
+    if len(str1) != len(str2):
         return False
-
-    char_set = [False for _ in range(128)]
-    for char in string:
-        val = ord(char)
-        if char_set[val]:
-            # Char already found in string
+    counter = Counter()
+    for c in str1:
+        counter[c] += 1
+    for c in str2:
+        if counter[c] == 0:
             return False
-        char_set[val] = True
-
+        counter[c] -= 1
     return True
 
-
-
-print(unique('hb 627jh=j ()'))
+print(check_permutation('dog', 'god'))
 
 
 class Test(unittest.TestCase):
-    dataT = [('abcd'), ('s4fad'), ('')]
-    dataF = [('23ds2'), ('hb 627jh=j ()')]
+    dataT = (
+        ('abcd', 'bacd'),
+        ('3563476', '7334566'),
+        ('wef34f', 'wffe34'),
+    )
+    dataF = (
+        ('abcd', 'd2cba'),
+        ('2354', '1234'),
+        ('dcw4f', 'dcw5f'),
+    )
 
-    def test_unique(self):
+    def test_cp(self):
         # true check
-        for test_string in self.dataT:
-            actual = unique(test_string)
-            self.assertTrue(actual)
+        for test_strings in self.dataT:
+            result = check_permutation(*test_strings)
+            self.assertTrue(result)
         # false check
-        for test_string in self.dataF:
-            actual = unique(test_string)
-            self.assertFalse(actual)
+        for test_strings in self.dataF:
+            result = check_permutation(*test_strings)
+            self.assertFalse(result)
+
 
 if __name__ == "__main__":
     unittest.main()
