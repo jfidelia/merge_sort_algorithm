@@ -25,7 +25,6 @@ class HashTable:
             slot[i] = ((key, value))
         else:
             slot.append((key, value))
-            print(H.hashmap)
 
     def get(self,key):
         hash_key = self.hashing_func(key)
