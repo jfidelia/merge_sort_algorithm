@@ -88,39 +88,3 @@
 # quickSort(alist)
 # print(alist)
 
-def mergeSort(alist):
-    print("Splitting", alist)
-    if len(alist) > 1:
-        mid = len(alist) // 2
-        left = alist[:mid]
-        right = alist[mid:]
-
-        mergeSort(left)
-        mergeSort(right)
-
-        i=j=k=0
-
-        while i < len(left) and j < len(right):
-            if left[i] < right[j]:
-                alist[k] = left[i]
-                i += 1
-            else:
-                alist[k] = right[j]
-                j += 1
-            k += 1
-
-        while i < len(left):
-            alist[k] = left[i]
-            i += 1
-            k += 1
-
-        while j < len(right):
-            alist[k] = right[j]
-            j += 1
-            k += 1
-
-    print("Merging", alist)
-
-alist = [77,33,55,0,1,99,88,1000,3000]
-mergeSort(alist)
-print(alist)
