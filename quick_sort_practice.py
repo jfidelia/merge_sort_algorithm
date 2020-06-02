@@ -100,14 +100,14 @@ def quickSortHelper(alist, first, last):
         quickSortHelper(alist, splitpoint + 1, last)
 
 def partition(alist, first, last):
-    
+
     pivotvalue = alist[first]
 
     leftmarker = first + 1
     rightmarker = last
+
     done = False
     while not done:
-
         while leftmarker <= rightmarker and alist[leftmarker] <= pivotvalue:
             leftmarker = leftmarker + 1
 
@@ -127,10 +127,8 @@ def partition(alist, first, last):
 
     return rightmarker
 
-alist = [77,66,88,22,10,13,1,2,10,24,99,87,98,96]
+alist = [900,60,850,300,2,98,66,22,760,450,250,10,19,20,79,64,21,44,102,95,320]
 print(alist)
 quickSort(alist)
 print(alist)
-
-
      
