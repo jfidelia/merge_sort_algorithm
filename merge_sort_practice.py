@@ -36,5 +36,40 @@
 # mergeSort(alist)
 # print(alist)
 
+def mergeSort(alist):
+    print("Splitting ", alist)
+    if len(alist) > 1:
+        mid = len(alist) // 2
+        left = alist[:mid]
+        right = alist[mid:]
 
+        mergeSort(left)
+        mergeSort(right)
+
+        i=j=k=0
+
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                alist[k] = left[i]
+                i += 1
+            else:
+                alist[k] = right[j]
+                j += 1
+            k += 1
+
+        while i < len(left):
+            alist[k] = left[i]
+            i += 1
+            k += 1
+
+        while j < len(right):
+            alist[k] = right[j]
+            j += 1
+            k += 1
+
+    print("Merging ", alist)
+
+alist = [989,69,56,35,789,654,327,898,1,4,2,7,200,300,100]
+mergeSort(alist)
+print(alist)
         
