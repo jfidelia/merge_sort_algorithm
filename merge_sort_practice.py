@@ -36,3 +36,47 @@
 # mergeSort(alist)
 # print(alist)
 
+def quickSort(alist):
+    quickSortHelper(alist, 0, len(alist) - 1)
+
+def quickSortHelper(alist, first, last):
+    if first < last:
+
+        splitpoint = partition(alist, first, last)
+
+        quickSortHelper(alist, first, splitpoint - 1)
+        quickSortHelper(alist, splitpoint + 1, last)
+
+def partition(alist, first, last):
+
+    pivotvalue = alist[first]
+
+    leftmarker = first + 1
+    rightmarker = last
+
+    done = False
+    while not done:
+
+        while leftmarker <= rightmarker and alist [leftmarker] <= pivotvalue:
+            leftmarker = leftmarker + 1
+
+        while alist[rightmarker] >= pivotvalue and rightmarker >= leftmarker:
+            rightmarker = rightmarker - 1
+
+        if rightmarker < leftmarker:
+            done = True
+        else:
+            temp = alist[leftmarker]
+            alist[leftmarker] = alist[rightmarker]
+            alist[rightmarker] = temp
+
+    temp = alist[first]
+    alist[first] = alist[rightmarker]
+    alist[rightmarker] = temp
+
+    return rightmarker
+
+alist = [66,77,33,12,10,23,1,7,100,76,65,44,99,75,9]
+print(alist)
+quickSort(alist)
+print(alist)
