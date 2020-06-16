@@ -114,9 +114,75 @@ from collections import defaultdict
 #         return True
 
 
-# # Your Trie object will be instantiated and called as such:
+# Your Trie object will be instantiated and called as such:
 # obj = Trie()
-# obj.insert("hello")
+# obj.insert("pello")
+# obj.insert("pelloworld")
 # param_2 = obj.search("word")
-# param_3 = obj.startsWith("prefix")
-# print(obj.startsWith("hello"))
+# param_3 = obj.startsWith("p")
+# print(param_3)
+
+class TrieNode:
+    def __init__(self, char):
+        self.children = []
+        self.isWord = False
+        self.val = char
+
+class Trie(object):
+    def __init__(self):
+        
+        self.root = TrieNode("*")
+
+    def insert(self, word):
+        current = self.root
+        for w in word:
+            flag = False
+            for child in current.children:
+                if child.val == w:
+                    flag = True
+                    current = child
+                    break
+            if not flag:
+                new_node = TrieNode(w)
+                current.children.append(new_node)
+                current = new_node
+        current.isWord = True
+
+    def search(self, word):
+        current = self.root
+        for w in word:
+            found = False
+            for child in current.children:
+                if child.val == w:
+                    found = True
+                    current = child
+                    break
+            if not found:
+                return False
+        return current.isWord
+    
+    def startsWith(self, prefix):
+        current = self.root
+        for w in prefix:
+            found = False
+            for child in current.children:
+                if child.val == w:
+                    found = True
+                    current = child
+                    break
+            if not found:
+                return False
+        return True
+
+obj = Trie()
+obj.insert("hello")
+obj.insert("helloworld")
+param_2 = obj.search("word")
+param_3 = obj.startsWith("h")
+print(param_3)
+obj.insert("window")
+obj.insert("windows")
+print(obj.startsWith("window"))
+print(param_2)
+obj.insert("word")
+print(obj.search("word"))
