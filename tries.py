@@ -139,6 +139,7 @@ class Trie(object):
             flag = False
             for child in current.children:
                 if child.val == w:
+                    flag = True
                     current = child
                     break
             if not flag:
@@ -153,6 +154,7 @@ class Trie(object):
             found = False
             for child in current.children:
                 if child.val == w:
+                    found = True
                     current = child
                     break
             if not found:
@@ -165,6 +167,7 @@ class Trie(object):
             found = False
             for child in current.children:
                 if child.val == w:
+                    found = True
                     current = child
                     break
             if not found:
