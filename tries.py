@@ -60,3 +60,62 @@ from collections import defaultdict
 # param_2 = obj.search(word)
 # param_3 = obj.startsWith(prefix)
 
+class TrieNode:
+    def __init__(self, char):
+        self.children = []
+        self.isWord = False
+        self.val = char
+
+class Trie(object):
+
+    def __init__(self):
+        self.root = TrieNode('*')
+
+    def insert(self, word):
+        current = self.root
+        for w in word:
+            flag = False
+            for child in current.children:
+                if child.val == w:
+                    flag = True
+                    current = child
+                    break
+            if not flag:
+                new_node = TrieNode(w)
+                current.children.append(new_node)
+                current = new_node
+        current.isWord = True
+
+    def search(self, word):
+        current = self.root
+        for w in word:
+            found = False
+            for child in current.children:
+                if child.val == w:
+                    found = True
+                    current = child
+                    break
+            if not found:
+                return False
+        return current.isWord
+
+    def startsWith(self, prefix):
+        current = self.root
+        for w in prefix:
+            found = False
+            for child in current.children:
+                if child.val == w:
+                    found = True
+                    current = child
+                    break
+            if not found:
+                return False
+        return True
+
+obj = Trie()
+obj.insert("roll")
+obj.insert("rolled")
+obj.insert("rolls")
+obj.insert("rolling")
+print(obj.search("rollings"))
+print(obj.startsWith("r"))
