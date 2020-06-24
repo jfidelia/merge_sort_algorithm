@@ -3,7 +3,7 @@ class HashTable:
     def __init__(self):
         self.size = 10
         self.hashmap =[[] for _ in range(0, self.size)]
-        # print(self.hashmap)
+        #print(self.hashmap)
 
 
     def hashing_func(self,key):
