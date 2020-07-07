@@ -36,39 +36,3 @@
 # mergeSort(alist)
 # print(alist)
 
-def mergeSort(alist):
-    print("Splitting ", alist)
-    if len(alist) > 1:
-        mid = len(alist) // 2
-        left = alist[:mid]
-        right = alist[mid:]
-
-        mergeSort(left)
-        mergeSort(right)
-
-        i=j=k=0
-
-        while i < len(left) and j < len(right):
-            if left[i] < right[j]:
-                alist[k] = left[i]
-                i += 1
-            else:
-                alist[k] = right[j]
-                j += 1
-            k += 1
-
-        while i < len(left):
-            alist[k] = left[i]
-            i += 1
-            k += 1
-
-        while j < len(right):
-            alist[k] = right[j]
-            j += 1
-            k += 1
-
-    print("Merging ", alist)
-
-alist = [66,5,43,78,96,54,23,12,1,3,7]
-mergeSort(alist)
-print(alist)
