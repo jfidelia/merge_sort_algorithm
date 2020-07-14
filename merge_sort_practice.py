@@ -48,4 +48,27 @@ def mergeSort(alist):
 
         i=j=k=0
 
-        while i < len(left) and j < len(right)
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                alist[k] = left[i]
+                i += 1
+            else:
+                alist[k] = right[j]
+                j += 1
+            k += 1
+
+        while i < len(left):
+            alist[k] = left[i]
+            i += 1
+            k += 1
+
+        while j < len(right):
+            alist[k] = right[j]
+            j += 1
+            k += 1
+
+    print("Merging ", alist)
+
+alist = [66,55,4,3,67,89,86,5,1,45,64]
+mergeSort(alist)
+print(alist)
